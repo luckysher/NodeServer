@@ -23,16 +23,15 @@ function home(req, res){
     res.end('<h1 style="color:green;">Home Page</h1>');
 }
 
-
 app.request(function(req, res, next){
-        res.statusCode = 404;
-        res.setHeader('content-type', 'text/html');
-        var response = '<p style="color:Red;">' + res.statusCode + " " + http.STATUS_CODES[res.statusCode] + " " + req.url + '</p><br/> Available urls: <br/> ';
+            res.statusCode = 404;
+            res.setHeader('content-type', 'text/html');
+            var response = '<p style="color:Red;">' + res.statusCode + " " + http.STATUS_CODES[res.statusCode] + " " + req.url + '</p><br/> Available urls: <br/> ';
 
             var urls = nserver.urls;
             var availUrls = '';
             for(var url in urls){
-               availUrls = '<h3 style="margin-left:100px;color:blue;">' + availUrls + ` ${url} ` + ' : ' + urls[url] + '<br/></h3>';
+               availUrls = availUrls + '<p style="margin-left:100px;"> ' + ` ${url} ` + ' : <a href="' + urls[url] + '">'+ urls[url] +'</a><br/></p>';
             }
             res.end(response + availUrls);
             info(req, res);
