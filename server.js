@@ -11,7 +11,10 @@ function info(req, res){
 }
 
 function index(req, res){
-   res.end('<h1 style="color:Red;">hello node test server !</h1> <h1 style="color:Red;">hello node with controller test server !</h1>');
+    res.statusCode = 200;
+    res.setHeader('content-type', 'text/html');
+    info(req, res);
+    res.end('<h1 style="color:Red;">hello node test server !</h1> <h1 style="color:Red;">hello node with controller test server !</h1>');
 }
 
 
