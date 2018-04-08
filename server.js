@@ -20,6 +20,8 @@ function index(req, res){
 function home(req, res){
     res.statusCode = 200;
     res.setHeader('content-type', 'text/html');
+    info(req, res);
+    res.end('<h1 style="color:green;">Home Page</h1>');
 }
 
 
