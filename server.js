@@ -1,7 +1,7 @@
 
 const http =  require('http');
 const express =  require('express');
-
+const nserver = require('./config');
 
 var app = express();
 
@@ -15,15 +15,20 @@ function index(req, res){
     info(req, res);
     res.end('<h1 style="color:Red;">hello node test server !</h1> <h1 style="color:Red;">hello node with controller test server !</h1>');
 }
-
+// home view
 function home(req, res){
     res.statusCode = 200;
     res.setHeader('content-type', 'text/html');
     info(req, res);
-    res.end('<h1 style="color:green;">Home Page</h1>');
+
+    res.end('<h1 style="color:green;">Home Page ' + req.params.name + ' </h1>');
 }
 
-app.request(function(req, res, next){
+app.get('/home/sh+sa', home);
+app.get('/', index);
+app.get('/index', index);
+
+app.use(function(req, res, next){
             res.statusCode = 404;
             res.setHeader('content-type', 'text/html');
             var response = '<p style="color:Red;">' + res.statusCode + " " + http.STATUS_CODES[res.statusCode] + " " + req.url + '</p><br/> Available urls: <br/> ';
